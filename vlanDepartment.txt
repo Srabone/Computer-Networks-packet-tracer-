@@ -1,0 +1,107 @@
+*******************Switch 1*********************
+vlan 10
+name EEE
+exit
+
+vlan 20 
+name BBA
+exit
+
+vlan 30
+name CSE
+exit
+
+int Fa0/1
+switchport access vlan 10
+exit
+
+int Fa0/2
+switchport access vlan 20
+exit
+
+int Fa0/3
+switchport access vlan 30
+exit
+
+int Fa0/4
+switchport mode trunk
+exit
+
+interface range fa0/1-3
+switchport mode access
+exit
+
+
+*************************switch 2******************
+vlan 10
+name EEE
+exit
+
+vlan 20 
+name BBA
+exit
+
+vlan 30
+name CSE
+exit
+
+int Fa0/1
+switchport access vlan 10
+exit
+
+int Fa0/2
+switchport access vlan 20
+exit
+
+int Fa0/3
+switchport access vlan 30
+exit
+
+int Fa0/4
+switchport mode trunk
+exit
+
+interface range fa0/1-3
+switchport mode access
+exit
+
+********************trunk switch***************
+
+vlan 10
+name EEE
+exit
+
+vlan 20 
+name BBA
+exit
+
+vlan 30
+name CSE
+exit
+
+interface range fa0/1-3
+switchport mode trunk
+exit
+
+
+***********************Router for inter vlan*****************
+
+int Fa0/0.1
+encapsulation dot1q 10
+ip address 192.160.50.1 255.255.255.0
+exit
+
+int Fa0/0.2
+encapsulation dot1q 20
+ip address 192.160.51.65 255.255.255.224
+exit
+
+int Fa0/0.3
+encapsulation dot1q 30
+ip address 192.160.51.1 255.255.255.192
+exit
+
+************
+int Fa0/0
+no shut
+exit
